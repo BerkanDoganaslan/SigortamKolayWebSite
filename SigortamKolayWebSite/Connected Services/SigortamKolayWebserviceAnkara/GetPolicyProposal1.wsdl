@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://SigortamKolay.com/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://SigortamKolay.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://SigortamKolay.com/">
+      <s:element name="GetProposal">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="value" type="tns:input" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="input">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="surName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="firmName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="identityType" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="identityNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="age" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="educationStatus" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="cityCode" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="townCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="districtName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="villageName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="streetName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="buildingNo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="floorNo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="apartmentNo" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="plateCityCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="plateNo" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="brandCode" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="modelCode" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="modelYear" type="s:int" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetProposalResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetProposalResult" type="tns:output" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="output">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="outList" type="tns:ArrayOfOutputList" />
+          <s:element minOccurs="0" maxOccurs="1" name="clause" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="totalPremiumAmount" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="policyNumber" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="productNo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="productName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="policyBeginDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="policyEndDate" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="insurancefirmName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfOutputList">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="outputList" nillable="true" type="tns:outputList" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="outputList">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="policyNumber" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="coverCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="coverName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="coverAmount" type="s:double" />
+          <s:element minOccurs="1" maxOccurs="1" name="premiumAmount" type="s:double" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AuthHeader" type="tns:AuthHeader" />
+      <s:complexType name="AuthHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Username" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Password" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="GetCitiesAndTowns">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCitiesAndTownsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCitiesAndTownsResult" type="tns:ArrayOfCityAndTown" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCityAndTown">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="cityAndTown" nillable="true" type="tns:cityAndTown" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="cityAndTown">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="cityCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="cityName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="towns" type="tns:ArrayOfTowns" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfTowns">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="towns" nillable="true" type="tns:towns" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="towns">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="townCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="townName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetBrandsAndModels">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetBrandsAndModelsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBrandsAndModelsResult" type="tns:ArrayOfBrandAndModel" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfBrandAndModel">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="brandAndModel" nillable="true" type="tns:brandAndModel" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="brandAndModel">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="brandCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="brandName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="models" type="tns:ArrayOfModels" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfModels">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="models" nillable="true" type="tns:models" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="models">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="modelCode" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="modelName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetProposalSoapIn">
+    <wsdl:part name="parameters" element="tns:GetProposal" />
+  </wsdl:message>
+  <wsdl:message name="GetProposalSoapOut">
+    <wsdl:part name="parameters" element="tns:GetProposalResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetProposalAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesAndTownsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCitiesAndTowns" />
+  </wsdl:message>
+  <wsdl:message name="GetCitiesAndTownsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCitiesAndTownsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBrandsAndModelsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBrandsAndModels" />
+  </wsdl:message>
+  <wsdl:message name="GetBrandsAndModelsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBrandsAndModelsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="GetPolicyProposalSoap">
+    <wsdl:operation name="GetProposal">
+      <wsdl:input message="tns:GetProposalSoapIn" />
+      <wsdl:output message="tns:GetProposalSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCitiesAndTowns">
+      <wsdl:input message="tns:GetCitiesAndTownsSoapIn" />
+      <wsdl:output message="tns:GetCitiesAndTownsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBrandsAndModels">
+      <wsdl:input message="tns:GetBrandsAndModelsSoapIn" />
+      <wsdl:output message="tns:GetBrandsAndModelsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GetPolicyProposalSoap" type="tns:GetPolicyProposalSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetProposal">
+      <soap:operation soapAction="http://SigortamKolay.com/GetProposal" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:GetProposalAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCitiesAndTowns">
+      <soap:operation soapAction="http://SigortamKolay.com/GetCitiesAndTowns" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrandsAndModels">
+      <soap:operation soapAction="http://SigortamKolay.com/GetBrandsAndModels" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GetPolicyProposalSoap12" type="tns:GetPolicyProposalSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetProposal">
+      <soap12:operation soapAction="http://SigortamKolay.com/GetProposal" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+        <soap12:header message="tns:GetProposalAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCitiesAndTowns">
+      <soap12:operation soapAction="http://SigortamKolay.com/GetCitiesAndTowns" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBrandsAndModels">
+      <soap12:operation soapAction="http://SigortamKolay.com/GetBrandsAndModels" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GetPolicyProposal">
+    <wsdl:port name="GetPolicyProposalSoap" binding="tns:GetPolicyProposalSoap">
+      <soap:address location="http://localhost/SigortamKolayWebService/Ankara/GetPolicyProposal.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GetPolicyProposalSoap12" binding="tns:GetPolicyProposalSoap12">
+      <soap12:address location="http://localhost/SigortamKolayWebService/Ankara/GetPolicyProposal.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
